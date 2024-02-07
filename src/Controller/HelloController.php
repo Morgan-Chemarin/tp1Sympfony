@@ -7,10 +7,12 @@ use Symfony\Component\Routing\Annotation\Route;
 
 class HelloController extends AbstractController
 {
-    #[Route('/hello', name: 'app_hello')]
-    public function sayHello(): Response
+    #[Route('/bonjour/{nom}', defaults: ['nom' => null], name: 'app_bonjour')]
+    public function sayBonjour($nom)
     {
-        return new Response('Coucou') ;
+        //return new Response("Bonjour $nom !");
+        return $this->render('bonjour.html.twig', [
+            'nom' => $nom,
+        ]);
     }
-
 }
